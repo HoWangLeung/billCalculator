@@ -12,6 +12,7 @@ class RestaurantCell: UITableViewCell {
    
     @IBOutlet weak var restaurantName: UILabel!
     
+    
     func configureCell(restaurantName: String){
         self.restaurantName.text = restaurantName
     }

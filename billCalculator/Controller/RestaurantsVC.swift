@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-let appDelegate = UIApplication.shared.delegate as? AppDelegate
+//let appDelegate = UIApplication.shared.delegate as? AppDelegate
 class RestaurantsVC: UIViewController {
     
     var restaurants:[Restaurant] = []
@@ -41,7 +41,7 @@ class RestaurantsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         
+        self.title = nil
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -83,13 +83,23 @@ extension RestaurantsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE"){
             (rowAction,indexPath) in
-            self.removeGoal(atIndexPath: indexPath)
+//            self.removeGoal(atIndexPath: indexPath)
             self.fetchCoreDataObjects()
             tableView.deleteRows(at: [indexPath], with: .automatic)
             
         }
         deleteAction.backgroundColor = UIColor.red
         return [deleteAction]
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "GroupsVC") as! GroupsVC
+     
+        vc.modalPresentationStyle = .fullScreen
+        
+        present(vc,animated: true)
+        vc.restaurantName.text = self.restaurants[indexPath.row].restaurantName
+        vc.currentRestaurant = self.restaurants[indexPath.row]
     }
     
     
@@ -99,26 +109,30 @@ extension RestaurantsVC: UITableViewDelegate, UITableViewDataSource {
 
 extension RestaurantsVC {
     
-    func removeGoal(atIndexPath indexPath: IndexPath){
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else{return}
-        managedContext.delete(restaurants[indexPath.row])
-        do{
-            try managedContext.save()
-            print("removed successfully")
-        }catch{
-            debugPrint("COULD NOT REMOVE: \(error.localizedDescription)")
-        }
-    }
+//    func removeGoal(atIndexPath indexPath: IndexPath){
+//        guard let managedContext = appDelegate?.persistentContainer.viewContext else{return}
+//        managedContext.delete(restaurants[indexPath.row])
+//        do{
+//            try managedContext.save()
+//            print("removed successfully")
+//        }catch{
+//            debugPrint("COULD NOT REMOVE: \(error.localizedDescription)")
+//        }
+//    }
     
     func fetch(completion:(_ complete: Bool)->()){
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+        
         let fetchRequest = NSFetchRequest<Restaurant>(entityName: "Restaurant")
    
+         
         
         do{
-            restaurants = try managedContext.fetch(fetchRequest)
+            restaurants = DataManager.shared.getRestaurants()
             print("successfully fetched data")
-            print(restaurants.count)
+          
+            
+            print("successfully fetched data end...........")
+            
             completion(true)
         }catch{
             debugPrint("ERROR: \(error.localizedDescription)")
