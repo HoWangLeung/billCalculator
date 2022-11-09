@@ -28,10 +28,10 @@ class AddRestaurantVC: UIViewController {
     @IBAction func didTapAddBtn(_ sender: Any) {
         print("did tap add button")
         let vc = storyboard?.instantiateViewController(withIdentifier: "AddMenuVC") as! AddMenuVC
-        vc.completionHandler = {itemName,itemPrice in
+        vc.completionHandler = {itemName,itemPrice, itemType in
             print("received",itemName,itemPrice)
             var newitemPrice = NSDecimalNumber(string: itemPrice)
-            let menuItem = DataManager.shared.menuItem(name: itemName!, price: newitemPrice)
+            let menuItem = DataManager.shared.menuItem(name: itemName!, price: newitemPrice, type: itemType!)
             
             self.menuItems.append(menuItem)
             self.tableView.reloadData()

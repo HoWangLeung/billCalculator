@@ -71,14 +71,12 @@ extension GroupsVC: UITableViewDelegate, UITableViewDataSource {
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "EachGroupVC") as! EachGroupVC
-     //self.groups[indexPath.row].name
         vc.modalPresentationStyle = .fullScreen
-        print("currentRestaurant",self.groups[indexPath.row].name)
-       // vc.groupName.text = "HELLO"
- 
         present(vc,animated: true)
         vc.groupName.text = self.groups[indexPath.row].name
         vc.currentRestaurant = self.currentRestaurant
+        vc.total.text = ""
+        vc.totalForEach.text = ""
         
     }
     

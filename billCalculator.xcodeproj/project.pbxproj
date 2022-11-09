@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D352494291B01D700976C87 /* SummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D352493291B01D700976C87 /* SummaryVC.swift */; };
+		0D352496291B030300976C87 /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D352495291B030300976C87 /* SummaryCell.swift */; };
 		0D3C2CE4291967EF006E560F /* AddRestaurantVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C2CE3291967EF006E560F /* AddRestaurantVC.swift */; };
+		0D71B530291B2AD100985C71 /* ItemTypeButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D71B52F291B2AD100985C71 /* ItemTypeButtonExt.swift */; };
+		0D71B533291B2CBE00985C71 /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D71B532291B2CBE00985C71 /* ItemType.swift */; };
 		0D97349E291AA19100BFA666 /* MenuSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D97349D291AA19100BFA666 /* MenuSelectionCell.swift */; };
 		0DE62614291962420087A90B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE62613291962420087A90B /* AppDelegate.swift */; };
 		0DE62616291962420087A90B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE62615291962420087A90B /* SceneDelegate.swift */; };
@@ -27,7 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D352493291B01D700976C87 /* SummaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryVC.swift; sourceTree = "<group>"; };
+		0D352495291B030300976C87 /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
 		0D3C2CE3291967EF006E560F /* AddRestaurantVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRestaurantVC.swift; sourceTree = "<group>"; };
+		0D71B52F291B2AD100985C71 /* ItemTypeButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypeButtonExt.swift; sourceTree = "<group>"; };
+		0D71B532291B2CBE00985C71 /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		0D97349D291AA19100BFA666 /* MenuSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSelectionCell.swift; sourceTree = "<group>"; };
 		0DE62610291962420087A90B /* billCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = billCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DE62613291962420087A90B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +67,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D71B52E291B2AB200985C71 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0D71B52F291B2AD100985C71 /* ItemTypeButtonExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0D71B531291B2CAE00985C71 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				0D71B532291B2CBE00985C71 /* ItemType.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		0DE62607291962420087A90B = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +102,8 @@
 		0DE62612291962420087A90B /* billCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				0D71B531291B2CAE00985C71 /* Enum */,
+				0D71B52E291B2AB200985C71 /* Extensions */,
 				0DE6262C291962DB0087A90B /* Controller */,
 				0DE6262B291962D00087A90B /* View */,
 				0DE6262A291962C70087A90B /* Model */,
@@ -108,6 +134,7 @@
 				0DFEAB5429199F7100EF1A16 /* MenuItemCell.swift */,
 				0DFEAB5A291A90E900EF1A16 /* GroupCell.swift */,
 				0D97349D291AA19100BFA666 /* MenuSelectionCell.swift */,
+				0D352495291B030300976C87 /* SummaryCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -120,6 +147,7 @@
 				0DEE63AB2919988F00506669 /* AddMenuVC.swift */,
 				0DFEAB58291A8A8000EF1A16 /* GroupsVC.swift */,
 				0DFEAB60291A95FE00EF1A16 /* EachGroupVC.swift */,
+				0D352493291B01D700976C87 /* SummaryVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,7 +225,9 @@
 			files = (
 				0DEE63AC2919988F00506669 /* AddMenuVC.swift in Sources */,
 				0DFEAB61291A95FE00EF1A16 /* EachGroupVC.swift in Sources */,
+				0D71B533291B2CBE00985C71 /* ItemType.swift in Sources */,
 				0DFEAB5529199F7100EF1A16 /* MenuItemCell.swift in Sources */,
+				0D71B530291B2AD100985C71 /* ItemTypeButtonExt.swift in Sources */,
 				0DFEAB5B291A90E900EF1A16 /* GroupCell.swift in Sources */,
 				0DFEAB5D291A92F400EF1A16 /* Group.swift in Sources */,
 				0D97349E291AA19100BFA666 /* MenuSelectionCell.swift in Sources */,
@@ -205,6 +235,8 @@
 				0DE6261E291962420087A90B /* billCalculator.xcdatamodeld in Sources */,
 				0DE62618291962420087A90B /* RestaurantsVC.swift in Sources */,
 				0DFEAB59291A8A8000EF1A16 /* GroupsVC.swift in Sources */,
+				0D352496291B030300976C87 /* SummaryCell.swift in Sources */,
+				0D352494291B01D700976C87 /* SummaryVC.swift in Sources */,
 				0DE62614291962420087A90B /* AppDelegate.swift in Sources */,
 				0DE62616291962420087A90B /* SceneDelegate.swift in Sources */,
 				0DFEAB57291A787500EF1A16 /* DataManager.swift in Sources */,

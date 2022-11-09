@@ -15,27 +15,40 @@ class AddMenuVC: UIViewController {
     
     @IBOutlet weak var itemPrice: UITextField!
     
+    @IBOutlet weak var foodTypeBtn: UIButton!
+    
+    @IBOutlet weak var drinkTypeBtn: UIButton!
+    
+    var itemType: ItemType = .food
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        foodTypeBtn.setSelectedColour()
+        drinkTypeBtn.setDeselectedColour()
     }
     
-    public var completionHandler:((String?,String?)-> Void)?
+    @IBAction func foodTypeBtnWasPressed(_ sender: Any) {
+        itemType = .food
+        foodTypeBtn.setSelectedColour()
+        drinkTypeBtn.setDeselectedColour()
+    }
+    
+    
+    @IBAction func drinkTypeBtnWasPressed(_ sender: Any) {
+        itemType = .drink
+        foodTypeBtn.setDeselectedColour()
+        drinkTypeBtn.setSelectedColour()
+    }
+    
+    
+    public var completionHandler:((String?,String?,String?)-> Void)?
     
   
     @IBAction func confirmBtnClicked(_ sender: Any) {
         print("confirm add menu item")
-//        guard let managedContext = appDelegate?.persistentContainer.viewContext else{return}
-//        let menuItem = MenuItem(context: managedContext)
-//        menuItem.name = itemName.text
-//
-//        if let str = itemPrice.text,
-//            let itemPrice = Int32(str) {
-//            menuItem.price = itemPrice
-//        }
       
 
-        completionHandler?(itemName.text, itemPrice.text )
+        completionHandler?(itemName.text, itemPrice.text, itemType.rawValue )
         print("appended succesfully")
         
         dismiss(animated: true)

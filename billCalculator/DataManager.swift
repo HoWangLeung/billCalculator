@@ -45,10 +45,11 @@ class DataManager{
         return restaurant
     }
     
-    func menuItem(name:String, price:NSDecimalNumber) -> MenuItem {
+    func menuItem(name:String, price:NSDecimalNumber, type:String) -> MenuItem {
         let menuItem = MenuItem(context: persistentContainer.viewContext)
         menuItem.name = name
         menuItem.price = price
+        menuItem.type = type
         return menuItem
     }
     
