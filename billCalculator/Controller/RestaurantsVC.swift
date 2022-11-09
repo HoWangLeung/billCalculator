@@ -72,35 +72,93 @@ extension RestaurantsVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
+
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .none
-    }
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//        return .none
+//    }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE"){
-            (rowAction,indexPath) in
-//            self.removeGoal(atIndexPath: indexPath)
-            self.fetchCoreDataObjects()
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-        }
-        deleteAction.backgroundColor = UIColor.red
-        return [deleteAction]
-    }
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE"){
+//            (rowAction,indexPath) in
+////            self.removeGoal(atIndexPath: indexPath)
+//            self.fetchCoreDataObjects()
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//
+//        }
+//        deleteAction.backgroundColor = UIColor.red
+//        return [deleteAction]
+//    }AddRestaurantVC
+  
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "GroupsVC") as! GroupsVC
-     
         vc.modalPresentationStyle = .fullScreen
-        
         present(vc,animated: true)
         vc.restaurantName.text = self.restaurants[indexPath.row].restaurantName
         vc.currentRestaurant = self.restaurants[indexPath.row]
     }
+    //For Edit and Delete Starts
+    
+    private func deleteAction(rowIndexPathAt indexPath: IndexPath) ->
+    UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete"){ (_,_,_) in
+            DataManager.shared.removeRestaurant(restaurants: self.restaurants, indexPath: indexPath)
+            self.fetchCoreDataObjects()
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        return action
+    }
+    private func editAction (rowIndexPathAt indexPath: IndexPath) ->
+    UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Edit"){ (_,_,_) in
+            print("pressed Edit in swipe")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddEditRestaurantVC") as! AddEditRestaurantVC
+            vc.modalPresentationStyle = .fullScreen
+            vc.isEditMode = true
+            vc.currentRestaurant = self.restaurants[indexPath.row]
+            self.present(vc,animated: true)
+        }
+        action.backgroundColor = .systemMint
+        return action
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = self.deleteAction(rowIndexPathAt: indexPath)
+        let editionAction = self.editAction(rowIndexPathAt: indexPath)
+        let swipe = UISwipeActionsConfiguration(actions: [deleteAction,editionAction])
+        return swipe
+    }
+    
+  
+    
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { action, indexPath in
+//            DataManager.shared.removeRestaurant( restaurants:self.restaurants, indexPath:indexPath)
+//            self.fetchCoreDataObjects()
+//             tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+//
+//
+//
+//        return [deleteAction]
+//    }
+////    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+//////        return .delete
+////
+////    }
+//
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//
+//    }
+    //For Edit and Delete Ends
     
     
 }

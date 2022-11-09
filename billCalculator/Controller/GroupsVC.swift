@@ -75,8 +75,9 @@ extension GroupsVC: UITableViewDelegate, UITableViewDataSource {
         present(vc,animated: true)
         vc.groupName.text = self.groups[indexPath.row].name
         vc.currentRestaurant = self.currentRestaurant
-        vc.total.text = ""
-        vc.totalForEach.text = ""
+       // vc.resetQuantity()
+//        vc.total.text = ""
+//        vc.totalForEach.text = ""
         
     }
     

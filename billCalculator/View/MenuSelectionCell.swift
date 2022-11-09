@@ -9,6 +9,12 @@ import UIKit
 typealias ButtonHandler = (MenuSelectionCell) -> Void
 class MenuSelectionCell: UITableViewCell {
     
+    
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    
+    @IBOutlet weak var quantityLabel: UILabel!
+    
     @IBOutlet weak var name: UILabel!
     
     @IBOutlet weak var price: UILabel!
@@ -26,14 +32,14 @@ class MenuSelectionCell: UITableViewCell {
         self.price.text = String(describing: price)
         self.quantity.text = String(describing: quantity)
         self.quantityChangeHandler = quantityChangeHandler
+        stepper.value = Double(quantity)
     }
     
      
     @IBAction func didClickSteper(_ sender: UIStepper) {
-        print("Current quantity= ",
-              String(sender.value)
-        )
-        self.quantity.text = String(Int(sender.value))
+        
+        
+        self.quantity.text = String(Int(sender.value) )
         quantityChangeHandler?(self)
     }
 }

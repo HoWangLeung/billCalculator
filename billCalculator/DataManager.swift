@@ -53,6 +53,7 @@ class DataManager{
         return menuItem
     }
     
+ 
     func getRestaurants()->[Restaurant] {
         let request: NSFetchRequest<Restaurant> = Restaurant.fetchRequest()
         
@@ -77,6 +78,14 @@ class DataManager{
             print("ERROR FETCHING MenuItemS........")
         }
         return fetchedMenuItems
+    }
+    
+    func removeRestaurant(restaurants:[Restaurant], indexPath:IndexPath){
+        let restaurantToRemove = restaurants[indexPath.row]
+        
+        persistentContainer.viewContext.delete(restaurantToRemove)
+        self.save()
+     
     }
     
 

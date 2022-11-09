@@ -7,20 +7,33 @@
 
 import UIKit
 import CoreData
-class AddRestaurantVC: UIViewController {
-
+class AddEditRestaurantVC: UIViewController {
+    
+    
+    @IBOutlet weak var mainTitle: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var confirmBtn: UIButton!
     
     @IBOutlet weak var restaurantName: UITextField!
     
+    var currentRestaurant:Restaurant? = nil
+    
     var menuItems:[MenuItem] = []
+    
+    var isEditMode:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        if isEditMode {
+            mainTitle.text = "Edit Restaurant"
+            self.restaurantName.text = currentRestaurant?.restaurantName
+            let arr = currentRestaurant?.menuItems?.allObjects as! [MenuItem]
+            self.menuItems = arr
+        }
         
     }
     
@@ -49,13 +62,31 @@ class AddRestaurantVC: UIViewController {
     @IBAction func confirmBtnWasPressed(_ sender: Any) {
         print("clicked")
         if restaurantName.text != "" {
-            self.save{ (complete) in
-                if complete {
-                    print("dismissing")
-                    dismiss(animated: true)
-                    
+           
+            
+            if isEditMode {
+                print("restaurantName.text ",self.restaurantName.text)
+                currentRestaurant?.restaurantName = self.restaurantName.text
+                
+                
+                self.save{ (complete) in
+                    if complete {
+                        dismiss(animated: true)
+                    }
+                }
+              
+            }else{//edit
+                let restaurant = DataManager.shared.restaurant(restaurantName: restaurantName.text!)
+                for menuItem in menuItems {
+                    restaurant.addToMenuItems(menuItem)
                 }
                 
+                self.save{ (complete) in
+                    if complete {
+                        dismiss(animated: true)
+                    }
+                    
+                }
             }
         }
  
@@ -66,30 +97,17 @@ class AddRestaurantVC: UIViewController {
      
         
         
-        let restaurant = DataManager.shared.restaurant(restaurantName: restaurantName.text!)
-        for menuItem in menuItems {
-            restaurant.addToMenuItems(menuItem)
-        }
+       
         
          
         DataManager.shared.save()
         completion(true)
-        
 
-        
-//        do{
-//            try managedContext.save()
-//            print("saved successfully")
-//            completion(true)
-//        }catch{
-//            debugPrint("ERROR: \(error.localizedDescription)")
-//            completion(false)
-//        }
     }
     
 }
 
-extension AddRestaurantVC: UITableViewDelegate, UITableViewDataSource {
+extension AddEditRestaurantVC: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="MenuItem" representedClassName="MenuItem" syncable="YES" codeGenerationType="class">
+    <entity name="MenuItem" representedClassName="MenuItem" syncable="YES" codeGenerationType="category">
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="Decimal" defaultValueString="0"/>
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <relationship name="restaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="menuItems" inverseEntity="Restaurant"/>
     </entity>
-    <entity name="Restaurant" representedClassName="Restaurant" syncable="YES" codeGenerationType="class">
+    <entity name="Restaurant" representedClassName="Restaurant" syncable="YES" codeGenerationType="category">
         <attribute name="hasServiceCharge" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="restaurantName" optional="YES" attributeType="String"/>
-        <relationship name="menuItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MenuItem" inverseName="restaurant" inverseEntity="MenuItem"/>
+        <relationship name="menuItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MenuItem" inverseName="restaurant" inverseEntity="MenuItem"/>
     </entity>
 </model>
