@@ -694,20 +694,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="menuItemCell" id="NI7-cE-SmN" customClass="MenuItemCell" customModule="billCalculator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NI7-cE-SmN" id="W3k-EF-epS">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sweet and Sour Chicken" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fz-Pg-pSK">
-                                                    <rect key="frame" x="30" y="10.999999999999998" width="198" height="21.333333333333329"/>
+                                                    <rect key="frame" x="30" y="11.000000000000002" width="198" height="21.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ByA-nL-0QB">
-                                                    <rect key="frame" x="335" y="0.0" width="48" height="43.333333333333336"/>
+                                                    <rect key="frame" x="335" y="0.0" width="48" height="43.666666666666664"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="tus-ed-TgN"/>
                                                     </constraints>
@@ -818,10 +818,10 @@
             </objects>
             <point key="canvasLocation" x="1749" y="291"/>
         </scene>
-        <!--Add MenuVC-->
+        <!--Add Edit MenuVC-->
         <scene sceneID="WLX-7r-9zF">
             <objects>
-                <viewController storyboardIdentifier="AddMenuVC" id="ePE-uV-bOX" customClass="AddMenuVC" customModule="billCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddEditMenuVC" id="ePE-uV-bOX" customClass="AddEditMenuVC" customModule="billCalculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zOU-wV-prM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

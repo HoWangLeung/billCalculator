@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreData
-class AddMenuVC: UIViewController {
+class AddEditMenuVC: UIViewController {
 
     @IBOutlet weak var confirmBtn: UIButton!
     

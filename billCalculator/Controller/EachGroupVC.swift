@@ -150,7 +150,7 @@ class EachGroupVC: UIViewController {
         }
         
         var eachTotalWithoutDrinks = Double(self.totalWithoutDrinks)/Double(self.totalNumberOfPeople.text!)!
-//String(format: "%.2f", calculatedTotal)        vc.menuItemsForSelection = menuItemsForSelection_copy
+        vc.menuItemsForSelection = menuItemsForSelection_copy
         vc.eachTotalWithoutDrink.text = String(format: "%.3f", eachTotalWithoutDrinks)
         vc.totalWithDrinks.text = self.total.text
         vc.totalWithoutDrinks.text = String(format: "%.3f", self.totalWithoutDrinks)

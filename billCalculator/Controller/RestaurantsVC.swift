@@ -132,32 +132,6 @@ extension RestaurantsVC: UITableViewDelegate, UITableViewDataSource {
         return swipe
     }
     
-  
-    
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-//
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { action, indexPath in
-//            DataManager.shared.removeRestaurant( restaurants:self.restaurants, indexPath:indexPath)
-//            self.fetchCoreDataObjects()
-//             tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//
-//
-//
-//        return [deleteAction]
-//    }
-////    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//////        return .delete
-////
-////    }
-//
-//
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//
-//    }
     //For Edit and Delete Ends
     
     

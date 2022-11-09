@@ -40,7 +40,7 @@ class AddEditRestaurantVC: UIViewController {
     
     @IBAction func didTapAddBtn(_ sender: Any) {
         print("did tap add button")
-        let vc = storyboard?.instantiateViewController(withIdentifier: "AddMenuVC") as! AddMenuVC
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AddEditMenuVC") as! AddEditMenuVC
         vc.completionHandler = {itemName,itemPrice, itemType in
             print("received",itemName,itemPrice)
             var newitemPrice = NSDecimalNumber(string: itemPrice)
@@ -137,6 +137,40 @@ extension AddEditRestaurantVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
+    
+    //For Edit and Delete Starts
+    
+    private func deleteAction(rowIndexPathAt indexPath: IndexPath) ->
+    UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete"){ (_,_,_) in
+            self.menuItems.remove(at: indexPath.row)
+            
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        return action
+    }
+    private func editAction (rowIndexPathAt indexPath: IndexPath) ->
+    UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "Edit"){ (_,_,_) in
+            print("pressed Edit in swipe")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddEditMenuVC") as! AddEditMenuVC
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc,animated: true)
+        }
+        action.backgroundColor = .systemMint
+        return action
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = self.deleteAction(rowIndexPathAt: indexPath)
+        let editionAction = self.editAction(rowIndexPathAt: indexPath)
+        let swipe = UISwipeActionsConfiguration(actions: [deleteAction,editionAction])
+        return swipe
+    }
+    
+    //For Edit and Delete Ends
     
 
     
