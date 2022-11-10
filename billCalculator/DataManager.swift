@@ -88,6 +88,19 @@ class DataManager{
      
     }
     
+    func getOneMenuItem(menuItem: MenuItem) -> MenuItem? {
+        
+        let request: NSFetchRequest<MenuItem> = MenuItem.fetchRequest()
+        request.predicate =  NSPredicate(format: "(%K = %@)", argumentArray: ["name",menuItem.name!])
+        var fetchedMenuItem:MenuItem? = nil
+        do{
+            fetchedMenuItem = try persistentContainer.viewContext.fetch(request).first!
+        } catch {
+            print("ERROR FETCHING MenuItemS........")
+        }
+        return fetchedMenuItem
+    }
+    
 
     func save () {
         let context = persistentContainer.viewContext

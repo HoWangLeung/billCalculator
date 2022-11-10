@@ -143,8 +143,15 @@ extension AddEditRestaurantVC: UITableViewDelegate, UITableViewDataSource {
     private func deleteAction(rowIndexPathAt indexPath: IndexPath) ->
     UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete"){ (_,_,_) in
-            self.menuItems.remove(at: indexPath.row)
+           
             
+            let fetchedItem:MenuItem = DataManager.shared.getOneMenuItem(menuItem: self.menuItems[indexPath.row])!
+            if fetchedItem != nil {
+                print("delete in db")
+            }else{
+                print("nil it is")
+            }
+            self.menuItems.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         return action
