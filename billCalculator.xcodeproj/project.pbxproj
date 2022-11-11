@@ -394,6 +394,8 @@
 				DEVELOPMENT_TEAM = 7BM64W2FGU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = billCalculator/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Please allow to use current location always";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow to use current location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -422,6 +424,8 @@
 				DEVELOPMENT_TEAM = 7BM64W2FGU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = billCalculator/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Please allow to use current location always";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow to use current location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -109,9 +109,6 @@ class EachGroupVC: UIViewController {
                 noDrinkTotal += Double(quantity * price)
                 }
             }
-            
-            
-            
         }
          
 

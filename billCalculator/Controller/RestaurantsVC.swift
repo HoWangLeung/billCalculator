@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 //let appDelegate = UIApplication.shared.delegate as? AppDelegate
 class RestaurantsVC: UIViewController {
     
@@ -16,11 +17,22 @@ class RestaurantsVC: UIViewController {
     
     @IBOutlet weak var addRestaurantBtn: UIButton!
     
-  
+    
+    var locationManager = CLLocationManager()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = nil
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presentingViewController?.viewWillDisappear(true)
+        //presentingViewController?.viewWillDisappear(true)
         print("in view will appear")
         fetchCoreDataObjects()
         tableView.reloadData()
@@ -33,19 +45,22 @@ class RestaurantsVC: UIViewController {
             }
         }
     }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        presentingViewController?.viewWillAppear(true)
+    
+    
+    @IBAction func handleAddBtnClick(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AddEditRestaurantVC") as! AddEditRestaurantVC
+        vc.modalPresentationStyle = .fullScreen
+        present(vc,animated: true)
+        
+        vc.currentRestaurant = DataManager.shared.restaurant(restaurantName: "This is a Default")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = nil
-        
-        tableView.delegate = self
-        tableView.dataSource = self
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+       // presentingViewController?.viewWillAppear(true)
     }
+    
+   
     
 
     
@@ -67,29 +82,10 @@ extension RestaurantsVC: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell") as? RestaurantCell else {
             return UITableViewCell() }
-        cell.configureCell(restaurantName: restaurant.restaurantName!)
+        cell.configureCell(restaurantName: restaurant.restaurantName!,restaurantAddress: restaurant.address!)
         
         return cell
     }
-    
-
-    
-//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//        return .none
-//    }
-    
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE"){
-//            (rowAction,indexPath) in
-////            self.removeGoal(atIndexPath: indexPath)
-//            self.fetchCoreDataObjects()
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//
-//        }
-//        deleteAction.backgroundColor = UIColor.red
-//        return [deleteAction]
-//    }AddRestaurantVC
-  
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "GroupsVC") as! GroupsVC
@@ -118,6 +114,8 @@ extension RestaurantsVC: UITableViewDelegate, UITableViewDataSource {
             vc.isEditMode = true
             vc.currentRestaurant = self.restaurants[indexPath.row]
             self.present(vc,animated: true)
+
+         
         }
         action.backgroundColor = .systemMint
         return action
@@ -169,6 +167,52 @@ extension RestaurantsVC {
         }catch{
             debugPrint("ERROR: \(error.localizedDescription)")
         }
+        
+    }
+}
+
+extension RestaurantsVC: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let coordinate = manager.location?.coordinate
+        let latitude = coordinate?.latitude ?? 0
+        let longtitude = coordinate?.longitude ?? 0
+        print("latitude = ",coordinate?.latitude ?? 0)
+        print("longtitude = ",coordinate?.longitude ?? 0)
+      
+        let myLocation = CLLocation(latitude: latitude, longitude: longtitude)
+//53.472125997452366, -2.2495993441244666
+        //My buddy's location
+        let myBuddysLocation = CLLocation(latitude: 53.478645469683315, longitude: -2.2394721613121646)
+        
+        //Measuring my distance to my buddy's (in km)
+        let distance = myLocation.distance(from: myBuddysLocation) / 1000
+
+        //Display the result in km
+        print(String(format: "The distance to my buddy is %.01fkm", distance))
+        
+        print("distance = ",distance)
+        locationManager.stopUpdatingLocation()
+        
+        let address = "45-47 Faulkner St, Manchester M1 4EE"
+
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+            else {
+                // handle no location found
+                return
+            }
+            
+            // Use your location
+            print("place marks", placemarks)
+            print("location from string = ", location)
+            
+      
+        
+        }
+        
         
     }
 }

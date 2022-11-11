@@ -12,9 +12,11 @@ class RestaurantCell: UITableViewCell {
    
     @IBOutlet weak var restaurantName: UILabel!
     
+    @IBOutlet weak var restaurantAddress: UILabel!
     
-    func configureCell(restaurantName: String){
+    func configureCell(restaurantName: String, restaurantAddress: String){
         self.restaurantName.text = restaurantName
+        self.restaurantAddress.text = restaurantAddress
     }
     
 }

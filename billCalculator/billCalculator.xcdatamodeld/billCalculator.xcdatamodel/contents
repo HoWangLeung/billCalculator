@@ -8,6 +8,7 @@
         <relationship name="restaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="menuItems" inverseEntity="Restaurant"/>
     </entity>
     <entity name="Restaurant" representedClassName="Restaurant" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="hasServiceCharge" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="restaurantName" optional="YES" attributeType="String"/>
         <relationship name="menuItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MenuItem" inverseName="restaurant" inverseEntity="MenuItem"/>

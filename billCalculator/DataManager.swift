@@ -70,6 +70,7 @@ class DataManager{
     func getMenuItemsByRestaurant(currentRestaurant:Restaurant)->[MenuItem] {
         let request: NSFetchRequest<MenuItem> = MenuItem.fetchRequest()
         request.predicate =  NSPredicate(format: "(restaurant = %@)", currentRestaurant)
+        
         var fetchedMenuItems:[MenuItem] = []
         
         do{
